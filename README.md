@@ -135,6 +135,22 @@ __Example__
                                       --ssh-keys 1234,4567
 ```
 
+#### With backups
+
+This will create a droplet with backups enabled.
+
+__Example__
+```bash
+➜ knife digital_ocean droplet create --server-name <FQDN> \
+                                      --image <IMAGE ID> \
+                                      --location <REGION ID> \
+                                      --size <SIZE ID> \
+                                      --ssh-keys <SSH KEY-ID(s), comma-separated> \
+                                      --backups_enabled \
+                                      --bootstrap \
+                                      --run-list "<RUNLIST>"
+```
+
 ### List running droplets (servers)
 
 ```shell
