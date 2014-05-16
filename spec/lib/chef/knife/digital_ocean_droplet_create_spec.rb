@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 def mock_api_response(data = {})
-  Hashie::Rash.new(data)
+  Hashie::Mash.new(data)
 end
 
 describe Chef::Knife::DigitalOceanDropletCreate do
@@ -166,6 +166,20 @@ describe Chef::Knife::DigitalOceanDropletCreate do
     it 'should configure the first boot attributes on Bootstrap' do
       bootstrap = subject.bootstrap_for_node('123.123.123.123')
       bootstrap.config[:first_boot_attributes].should eql(json_attributes)
+    end
+  end
+
+  context 'passing secret_file (--secret-file)' do
+    let(:secret_file) { '/tmp/sekretfile' }
+    let(:custom_config) {
+      {
+       :secret_file => secret_file
+      }
+    }
+
+    it 'secret_file should be available to Bootstrap' do
+      bootstrap = subject.bootstrap_for_node('123.123.123.123')
+      bootstrap.config[:secret_file].should eql(secret_file)
     end
   end
 
