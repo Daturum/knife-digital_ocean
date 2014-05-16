@@ -188,7 +188,7 @@ class Chef
                                           :region_id       => locate_config_value(:location),
                                           :ssh_key_ids     => locate_config_value(:ssh_key_ids).join(','),
                                           :private_networking => locate_config_value(:private_networking),
-                                          :backups_enabled => locate_config_value(:backups_enabled)))
+                                          :backups_enabled => locate_config_value(:backups_enabled))
 
         if response.status != 'OK'
           ui.error("Droplet could not be started #{response.inspect}")
